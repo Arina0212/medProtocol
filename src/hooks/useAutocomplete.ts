@@ -27,12 +27,17 @@ export const useAutocomplete = (sectionLabel: string, query: string) => {
   }, [query, lastCommaIndex]);
 
   const suggestions = useMemo(() => {
-    if (!lastWord.trim()) return [];
-
     const key = sectionLabel as SectionKey;
     const dictionary = autocompleteDictionary[key];
 
     if (!dictionary) return [];
+    if (!lastWord.trim()) {
+      if (key === 'Диагноз') {
+        return dictionary;
+      } else {
+        return [];
+      }
+    }
 
     return dictionary
       .filter((term) => term.toLowerCase().includes(lastWord.toLowerCase()))

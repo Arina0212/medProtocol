@@ -92,6 +92,11 @@ export const SectionInput: React.FC<SectionInputProps> = ({
             setHighlightedIndex(-1);
             setTimeout(() => autoResize(), 0);
           }}
+          onClick={() => {
+            if (label === 'Диагноз') {
+              setIsOpen(true);
+            }
+          }}
           onFocus={() => {
             setIsOpen(true);
           }}
